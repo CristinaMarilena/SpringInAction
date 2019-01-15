@@ -58,6 +58,6 @@ Ex:
 **_Side note: - Pattern doesn t seem right to validate a date, but only the format of it. 
               - CreditCardNumber ann implements Luhn algorithm_**
               
-
+To acutally validate the request data use the @Valid annotation to the corresponding model parameter.
 
 
