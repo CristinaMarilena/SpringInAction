@@ -1,6 +1,6 @@
 # SpringInAction
 
-## Spring annotations
+## SPRING ANNOTATIONS
 
 ### @Component
 This simple annotation identifies the class as a component class and serves as a clue to Spring that a bean should be created for the class.
@@ -20,7 +20,7 @@ Auto-configuration tries to be as intelligent as possible and will back-away as 
 3. @ComponentScan - this enables component scan. It practically lets you declare other classes like @Component, @Service, @Controller and has Spring automatically discovere them AND REGISTER THEM AS BEANS IN THE SPRING CONTEXT.
 
 
-## Spring boot
+## SPRING BOOT
 
 ### Exclusions of auto configurations
 
@@ -35,5 +35,29 @@ Exclusions are all or nothing and need to be used when you don't need configurat
 Some of this autoconfigurations may depend on a property.Look into the spring boot documentation and see what properties are available for tuning.
 
 You can also override @ConditionalOnMissingBean conditions and if you applications doesn't user Servlets of filters, the you can define a FilterRegistrationBean and call setEnabled(false);
+
+## INPUT VALIDATIONS
+
+Spring supports java bean validation API wich makes it easy to declare validation rules as opposed to explicitly writing declaration login in your application.
+
+**Apply validation rules with SPRING MVC:
+
+1. Declare validation rules on the class that is validated(models)
+2. Specify that the validation should be made in the controller s methods that require validation
+3. Display validation errors
+
+Ex: 
+
+                  @NotNull
+                  @Size(min, message)
+                  @NotBlank    ( from hibernate)
+                  @CreditCardNumber  
+                  @Pattern 
+                  @Digits
+                  
+**_Side note: - Pattern doesn t seem right to validate a date, but only the format of it. 
+              - CreditCardNumber ann implements Luhn algorithm_**
+              
+
 
 
