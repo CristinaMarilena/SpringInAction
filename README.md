@@ -60,4 +60,63 @@ Ex:
               
 To acutally validate the request data use the @Valid annotation to the corresponding model parameter.
 
+## SPRING BOOT APPLICATION CONFIGURATION
+
+Spring boot provides a very easy way for configuring your application regarding externalized properties. It lets you configure your application using a file named **_application.properties_**. 
+
+### Application Configuration using @Value
+
+            @RestController
+            public class Welcome{
+                  @Value ("${welcome.message}")
+                  private String welcomeMessage;
+
+                  //use the welcome message
+            }
+
+### Application Configuration using Type-safe Configuration Properties
+
+The problem with @Value is that you have all you properties distributed through out you entire application. A better approach would be to have a centralized solution. You can define a configuration component using @ConfigurationProperties annotation 
+
+            @Component
+            @ConfigurationProperties("basic")
+            public class BasicConfiguration {
+                private boolean value;
+                private String message;
+                private int number;
+
+                public boolean isValue() {
+                    return value;
+                }
+
+                public void setValue(boolean value) {
+                    this.value = value;
+                }
+
+                public String getMessage() {
+                    return message;
+                }
+
+                public void setMessage(String message) {
+                    this.message = message;
+                }
+
+                public int getNumber() {
+                    return number;
+                }
+
+                public void setNumber(int number) {
+                    this.number = number;
+                }
+
+            }
+
+All the exposed properties of BasicConfiguration will now start with 'basic' : basic.value, basic.message etc;
+Now you can autowire BasicConfiguration whenever you want to use it.
+
+### Understand Type Safety
+
+@ConfigurationProperties is type safe. That means that if you configure any property with an invalid type the application will fail to start.
+
+
 
